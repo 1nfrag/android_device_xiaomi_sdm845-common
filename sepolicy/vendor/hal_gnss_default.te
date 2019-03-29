@@ -1,1 +1,2 @@
-allow hal_gnss_default gps_data_file:dir r_dir_perms;
+allow hal_gnss_default gps_data_file:dir { add_name read r_dir_perms write };
+allow hal_gnss_default gps_data_file:fifo_file { create open read setattr write};

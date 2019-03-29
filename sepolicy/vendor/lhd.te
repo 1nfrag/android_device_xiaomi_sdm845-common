@@ -4,3 +4,14 @@ type lhd_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(lhd);
 
 allow lhd sysfs_wake_lock:file rw_file_perms;
+allow lhd self:capability2 block_suspend;
+allow lhd gps_device:chr_file { read open write };
+allow lhd gps_data_file:dir { add_name create getattr open read remove_name search write};
+allow lhd gps_data_file:file { create getattr lock open read rename unlink write };
+allow lhd gps_data_file:fifo_file { create getattr open read unlink write };
+
+allow lhd self:tcp_socket { bind create };
+allow lhd port:tcp_socket name_bind;
+allow lhd node:tcp_socket node_bind;
+
+allow lhd sysfs:file { read open write };

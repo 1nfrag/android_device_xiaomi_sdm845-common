@@ -1,0 +1,4 @@
+allow hwservicemanager glgps:dir search;
+allow hwservicemanager glgps:file { getattr read open };
+allow hwservicemanager glgps:process getattr;
+allow hwservicemanager glgps:binder transfer;

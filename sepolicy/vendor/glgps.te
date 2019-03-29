@@ -1,6 +1,38 @@
 type glgps, domain;
 type glgps_exec, exec_type, vendor_file_type, file_type;
 
-init_daemon_domain(glgps);
+init_daemon_domain(glgps)
+net_domain(glgps)
 
-allow glgps gps_data_file:file create_file_perms;
+#allow glgps dnsproxyd_socket:sock_file {create write };
+
+unix_socket_connect(glgps, property, rild);
+
+allow glgps gps_data_file:sock_file {ioctl read write create getattr setattr lock append map unlink rename open};
+allow glgps gps_data_file:file { create rename rw_file_perms unlink};
+allow glgps gps_data_file:dir { add_name create getattr open read remove_name rename search write };
+allow glgps gps_data_file:fifo_file { create getattr open read setattr unlink write};
+allow glgps gps_device:chr_file {ioctl read write getattr lock append map open};
+
+allow glgps hwservicemanager_prop:file { getattr open read };
+allow glgps hwservicemanager:binder { call transfer};
+allow glgps system_server:binder { call transfer };
+
+allow glgps fwk_sensor_hwservice:hwservice_manager find;
+
+allow glgps self:netlink_kobject_uevent_socket { create bind setopt }; 
+
+allow glgps socket_device:sock_file {create};
+
+allow glgps node:tcp_socket node_bind;
+allow glgps node:udp_socket node_bind;
+allow glgps port:tcp_socket name_bind;
+allow glgps port:udp_socket name_bind;
+
+allow glgps self:capability2 block_suspend;
+allow glgps self:netlink_kobject_uevent_socket create;
+allow glgps self:tcp_socket { bind create connect getopt setattr write};
+allow glgps self:udp_socket { bind create connect getopt setattr write };
+allow glgps sysfs_wake_lock:file { read open write };
+
+allow glgps system_file:file lock;
