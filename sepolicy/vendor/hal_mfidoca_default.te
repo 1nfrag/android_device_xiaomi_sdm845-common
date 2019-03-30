@@ -1,0 +1,33 @@
+type hal_mfidoca_default, domain;
+
+type hal_mfidoca_default_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_mfidoca_default)
+
+vndbinder_use(hal_mfidoca_default)
+
+allow hal_mfidoca_default firmware_file:dir {ioctl read getattr lock search open};
+allow hal_mfidoca_default firmware_file:file {ioctl read getattr lock map open};
+
+allow hal_mfidoca_default init:unix_stream_socket connectto;
+
+allow hal_mfidoca_default vendor_tee_listener_prop:file {ioctl read getattr lock map open};
+allow hal_mfidoca_default vendor_tee_listener_prop:property_service set;
+allow hal_mfidoca_default vendor_system_prop:file {ioctl read getattr lock map open};
+allow hal_mfidoca_default vendor_fp_prop:file {ioctl read getattr lock map open};
+
+allow hal_mfidoca_default hwservicemanager_prop:file { ioctl read getattr lock map open };
+
+allow hal_mfidoca_default hwservicemanager:binder {call transfer};
+allow hal_mfidoca_default tee_device:chr_file { ioctl read write getattr lock append map open };
+
+allow hal_mfidoca_default ion_device:chr_file {ioctl read write getattr lock append map open};
+allow hal_mfidoca_default firmware_file:file {ioctl read getattr lock map open};
+allow hal_mfidoca_default firmware_file:dir {ioctl read getattr lock search open};
+
+allow hal_mfidoca_default property_socket:sock_file write;
+
+allow hal_mfidoca_default hal_mfidoca_hwservice:hwservice_manager add;
+allow hal_mfidoca_default hidl_base_hwservice:hwservice_manager add;
+
+allow hal_mfidoca_default hal_mtdservice_default:binder transfer;

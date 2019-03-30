@@ -2,3 +2,8 @@ allow hwservicemanager glgps:dir search;
 allow hwservicemanager glgps:file { getattr read open };
 allow hwservicemanager glgps:process getattr;
 allow hwservicemanager glgps:binder transfer;
+
+allow hwservicemanager hal_mfidoca_default:binder { call transfer };
+allow hwservicemanager hal_mfidoca_default:dir search;
+allow hwservicemanager hal_mfidoca_default:file {read open};
+allow hwservicemanager hal_mfidoca_default:process getattr;
