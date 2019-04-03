@@ -1,0 +1,1 @@
+allow hal_tui_comm_qti hal_mtdservice_default:binder call;

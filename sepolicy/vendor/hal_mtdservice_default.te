@@ -1,0 +1,55 @@
+type hal_mtdservice_default, domain;
+
+type hal_mtdservice_default_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_mtdservice_default)
+
+
+# Allow hwbinder call from hal client to server
+binder_call(hal_mtdservice_client, hal_mtdservice_server)
+
+ # Add hwservice related rules
+allow hal_mtdservice_server hidl_base_hwservice:hwservice_manager add;
+allow hal_mtdservice_client hal_mtdservice_hwservice:hwservice_manager { find };
+
+allow hal_mtdservice_default hidl_base_hwservice:hwservice_manager add;
+allow hal_mtdservice_default hal_mtdservice_hwservice:hwservice_manager add;
+
+allow hal_mtdservice_default vendor_shell_exec:file execute_no_trans;
+
+
+allow hal_mtdservice_default hwservicemanager_prop:file { read getattr open };;
+allow hal_mtdservice_default hwservicemanager:binder {call transfer };
+allow hal_mtdservice_default init:unix_stream_socket connectto;
+allow hal_mtdservice_default vendor_toolbox_exec:file execute_no_trans;
+allow hal_mtdservice_default vendor_shell_exec:file execute_no_trans;
+
+allow hal_mtdservice_default hal_mtdservice_default_exec:file {read getattr map execute entrypoint open};
+
+
+allow hal_mtdservice_default system_app:binder transfer;
+
+allow hal_mtdservice_default hal_tui_comm_hwservice:hwservice_manager find;
+allow hal_mtdservice_default hal_tui_comm_hwservice:binder {call transfer};
+allow hal_mtdservice_default hal_tui_comm_qti:binder {call transfer};
+allow hal_mtdservice_default sysfs:dir {read open};
+allow hal_mtdservice_default sysfs:file {read write open};
+allow hal_mtdservice_default hal_tidaservice_default:binder transfer;
+
+allow hal_mtdservice_default firmware_file:dir {ioctl read getattr lock search open};
+allow hal_mtdservice_default firmware_file:file {ioctl read getattr lock map open};
+allow hal_mtdservice_default ion_device:chr_file {ioctl read write getattr lock append map open};
+allow hal_mtdservice_default persist_drm_file:dir {ioctl read write create getattr setattr lock relabelto rename add_name remove_name reparent search rmdir open};
+allow hal_mtdservice_default persist_drm_file:file {ioctl read write create getattr setattr lock relabelto append map unlink rename open};
+allow hal_mtdservice_default persist_file:dir {ioctl read getattr lock search open};
+allow hal_mtdservice_default mnt_vendor_file:dir {ioctl read write create getattr setattr lock relabelfrom rename add_name remove_name reparent search rmdir open};
+allow hal_mtdservice_default proc:file {ioctl read getattr lock map open};
+allow hal_mtdservice_default tee_device:chr_file {ioctl read write getattr lock append map open};
+allow hal_mtdservice_default vendor_tee_listener_prop:file {ioctl read getattr lock map open};
+allow hal_mtdservice_default system_data_file:dir getattr;
+allow hal_mtdservice_default hal_mlipay_hwservice:hwservice_manager find;
+allow hal_mtdservice_default hal_mfidoca_hwservice:hwservice_manager find;
+allow hal_mtdservice_default vendor_system_prop:file {ioctl read getattr lock map open};
+allow hal_mtdservice_default property_socket:sock_file write;
+allow hal_mtdservice_default vendor_tee_listener_prop:property_service set;
+allow hal_mtdservice_default vendor_tee_listener_prop:file {ioctl read getattr lock map open};

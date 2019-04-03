@@ -7,3 +7,14 @@ allow hwservicemanager hal_mfidoca_default:binder { call transfer };
 allow hwservicemanager hal_mfidoca_default:dir search;
 allow hwservicemanager hal_mfidoca_default:file {read open};
 allow hwservicemanager hal_mfidoca_default:process getattr;
+
+allow hwservicemanager hal_mtdservice_default:binder {call transfer };
+allow hwservicemanager hal_mtdservice_default:dir search;
+allow hwservicemanager hal_mtdservice_default:file {read open};
+allow hwservicemanager hal_mtdservice_default:process getattr;
+
+allow hwservicemanager hal_mlipay_default:binder {call transfer};
+allow hwservicemanager hal_mlipay_default:dir search;
+allow hwservicemanager hal_mlipay_default:file {read open};
+allow hwservicemanager hal_mlipay_default:process getattr;
+

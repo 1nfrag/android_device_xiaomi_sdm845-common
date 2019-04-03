@@ -1,1 +1,4 @@
 hal_attribute(displayfeature_xiaomi)
+hal_attribute(mlipay)
+hal_attribute(mtdservice)
+hal_attribute(tidaservice)
