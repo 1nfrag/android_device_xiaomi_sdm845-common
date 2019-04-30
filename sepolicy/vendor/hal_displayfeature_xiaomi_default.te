@@ -19,3 +19,5 @@ vndbinder_use(hal_displayfeature_xiaomi_default)
 
 hal_client_domain(hal_displayfeature_xiaomi_default, hal_display_color)
 hal_client_domain(hal_displayfeature_xiaomi_default, hal_display_postproc)
+
+allow hal_displayfeature_xiaomi_default vendor_dpps_prop:file {ioctl read getattr lock map open };

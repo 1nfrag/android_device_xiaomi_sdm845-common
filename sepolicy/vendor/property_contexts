@@ -17,6 +17,22 @@ ro.resolution_switch.enabled             u:object_r:vendor_displayfeature_prop:s
 ro.vendor.df.effect.conflict             u:object_r:vendor_displayfeature_prop:s0
 ro.whitepoint_calibration_enable         u:object_r:vendor_displayfeature_prop:s0
 sys.displayfeature.entry.enable          u:object_r:vendor_displayfeature_prop:s0
+
+# GPU
+ro.gpu.available_frequencies u:object_r:freq_prop:s0
+
+#mm-pp-dpps related prop
+ro.vendor.display.ad                     u:object_r:vendor_dpps_prop:s0
+ro.vendor.display.ad.sdr_calib_data      u:object_r:vendor_dpps_prop:s0
+ro.vendor.display.ad.hdr_calib_data      u:object_r:vendor_dpps_prop:s0
+ro.vendor.display.sensortype u:object_r:vendor_dpps_prop:s0
+init.svc.ppd                             u:object_r:vendor_dpps_prop:s0
+#liblight need to notify_brightness to displayfeature
+ro.xiaomi.bl.notify                      u:object_r:vendor_dpps_prop:s0
+
+#displayfeature use poll to monitor backlight brightness
+ro.xiaomi.bl.poll                      u:object_r:vendor_displayfeature_prop:s0
+
 sys.displayfeature.hbm.enable            u:object_r:vendor_displayfeature_prop:s0
 
 #mtd
